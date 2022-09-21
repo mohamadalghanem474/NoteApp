@@ -12,7 +12,7 @@ class NoteModel {
       this.noteImage,
       this.noteUserId});
 
-  NoteModel.fromJson(Map<String, dynamic> json, Set set) {
+  NoteModel.fromJson(Map<String, dynamic> json) {
     noteId = json['note_id'];
     noteTitle = json['note_title'];
     noteContent = json['note_content'];

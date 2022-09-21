@@ -4,6 +4,7 @@ import 'package:noteapp/app/notes/edite.dart';
 import 'package:noteapp/components/crud.dart';
 import 'package:noteapp/constant/linkApi.dart';
 import 'package:noteapp/main.dart';
+import 'package:noteapp/model/notemodel.dart';
 
 import '../components/card.dart';
 
@@ -75,7 +76,7 @@ class _HomeState extends State<Home> with Crud {
                               builder: ((BuildContext context) => EditeNote(
                                     notes: snapshot.data['data'][index],
                                   ))));
-                        }, noteModel: snapshot.data['data'][index],
+                        }, notemodel: NoteModel.fromJson(snapshot.data['data'][index]),
                       );
                     }));
               }
