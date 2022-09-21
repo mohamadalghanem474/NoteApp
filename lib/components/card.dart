@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:noteapp/model/notemodel.dart';
 
 class CardWwidget extends StatelessWidget {
-  const CardWwidget(
-      {super.key,
-       this.onTap,
-        required this.title,
-        required this.content,
-        required this.onDelete});
+  const CardWwidget({super.key, this.onTap, required this.onDelete, required this.noteModel});
   final void Function()? onTap;
-  final String title;
-  final String content;
   final void Function()? onDelete;
+  final NoteModel noteModel;
 
   @override
   Widget build(BuildContext context) {
@@ -27,15 +22,16 @@ class CardWwidget extends StatelessWidget {
                   width: 100,
                   height: 100,
                 )),
-                Expanded(
-                  flex: 2,
-                  child: ListTile(
-                    title: Text("$title"),
-                    subtitle: Text("$content"),
-                    trailing: IconButton(icon: Icon(Icons.delete),
-                    onPressed: onDelete, ),
-                  )
+            Expanded(
+                flex: 2,
+                child: ListTile(
+                  title: Text("${noteModel.noteTitle}"),
+                  subtitle: Text("${noteModel.noteContent}"),
+                  trailing: IconButton(
+                    icon: Icon(Icons.delete),
+                    onPressed: onDelete,
                   ),
+                )),
           ],
         ),
       ),

@@ -53,7 +53,8 @@ class _HomeState extends State<Home> with Crud {
                       return CardWwidget(
                         onDelete: () async {
                           var respnse = await postRequest(linkDeleteNotes, {
-                            "noteid": snapshot.data['data'][index]['note_id'].toString()
+                            "noteid": snapshot.data['data'][index]['note_id']
+                                .toString()
                           });
                           if (respnse["status"] == "success") {
                             Navigator.of(context).pushReplacementNamed("home");
@@ -69,15 +70,12 @@ class _HomeState extends State<Home> with Crud {
                             print("error delete note");
                           }
                         },
-                        title: "${snapshot.data['data'][index]['note_title']}",
-                        content:
-                            "${snapshot.data['data'][index]['note_content']}",
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: ((BuildContext context) => EditeNote(
                                     notes: snapshot.data['data'][index],
                                   ))));
-                        },
+                        }, noteModel: snapshot.data['data'][index],
                       );
                     }));
               }
