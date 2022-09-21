@@ -42,34 +42,44 @@ class _AddNoteState extends State<AddNote> with Crud {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("ADD NOTE")),
-      body: _isLoading? Center(child: CircularProgressIndicator(),): Container(
-        padding: EdgeInsets.all(10),
-        child: Form(
-          key: fromstate,
-          child: ListView(children: [
-            customTextFormField(
-              hint: "title",
-              controllert: title,
-              valid: (value) {
-                return validInput(value!, 3);
-              },
-            ),
-            customTextFormField(
-              hint: "content",
-              controllert: content,
-              valid: (value) {
-                return validInput(value!, 3);
-              },
-            ),
-            MaterialButton(
-              onPressed: () async {
-                await addNote();
-              },
-              child: Text("ADD NOTE"),
+      body: _isLoading
+          ? Center(
+              child: CircularProgressIndicator(),
             )
-          ]),
-        ),
-      ),
+          : Container(
+              padding: EdgeInsets.all(10),
+              child: Form(
+                key: fromstate,
+                child: ListView(children: [
+                  customTextFormField(
+                    hint: "title",
+                    controllert: title,
+                    valid: (value) {
+                      return validInput(value!, 3);
+                    },
+                  ),
+                  customTextFormField(
+                    hint: "content",
+                    controllert: content,
+                    valid: (value) {
+                      return validInput(value!, 3);
+                    },
+                  ),
+                  MaterialButton(
+                    onPressed: () async {
+                      await addNote();
+                    },
+                    child: Text("ADD image"),
+                  ),
+                  MaterialButton(
+                    onPressed: () async {
+                      await addNote();
+                    },
+                    child: Text("ADD NOTE"),
+                  )
+                ]),
+              ),
+            ),
     );
   }
 }
