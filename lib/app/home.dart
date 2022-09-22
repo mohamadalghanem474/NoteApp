@@ -55,7 +55,9 @@ class _HomeState extends State<Home> with Crud {
                         onDelete: () async {
                           var respnse = await postRequest(linkDeleteNotes, {
                             "noteid": snapshot.data['data'][index]['note_id']
-                                .toString()
+                                .toString(),
+                            "imagename": snapshot.data['data'][index]
+                                ['note_image']
                           });
                           if (respnse["status"] == "success") {
                             Navigator.of(context).pushReplacementNamed("home");
@@ -76,7 +78,9 @@ class _HomeState extends State<Home> with Crud {
                               builder: ((BuildContext context) => EditeNote(
                                     notes: snapshot.data['data'][index],
                                   ))));
-                        }, notemodel: NoteModel.fromJson(snapshot.data['data'][index]),
+                        },
+                        notemodel:
+                            NoteModel.fromJson(snapshot.data['data'][index]),
                       );
                     }));
               }

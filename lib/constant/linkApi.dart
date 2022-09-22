@@ -10,3 +10,7 @@ const String linkAddNotes = "$linkApi/notes/add.php";
 const String linkEditeNotes = "$linkApi/notes/edite.php";
 const String linkDeleteNotes = "$linkApi/notes/delete.php";
 const String linkViewNotes = "$linkApi/notes/view.php";
+
+//image folder
+
+const String imagenet = "$linkApi/upload/";

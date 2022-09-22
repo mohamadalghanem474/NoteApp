@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:io';
+import 'package:path/path.dart';
 
 import 'package:http/http.dart' as http;
 
@@ -30,5 +32,24 @@ class Crud {
     } catch (e) {
       print("error catch post : ${e}");
     }
+  }
+}
+
+postRequestWithFile(String url, Map data, File myfile) async {
+  var request = await http.MultipartRequest("POST", Uri.parse(url));
+  var length = await myfile.length();
+  var streem = http.ByteStream(myfile.openRead());
+  var multiPartFile = await http.MultipartFile("file", streem, length,
+      filename: basename(myfile.path));
+  request.files.add(multiPartFile);
+  data.forEach((key, value) {
+    request.fields[key] = value;
+  });
+  var myRequest = await request.send();
+  var response = await http.Response.fromStream(myRequest);
+  if (myRequest.statusCode == 200) {
+    return jsonDecode(response.body);
+  } else {
+    print("error ${myRequest.statusCode}");
   }
 }
